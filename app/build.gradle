@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        applicationId "com.fransiscuscaesar.skybridge"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // Material
+    def materialVersion = '1.2.0'
+    implementation "com.google.android.material:material:$materialVersion"
+
+    // Core
+    def coreVersion = '1.3.1'
+    implementation "androidx.core:core-ktx:$coreVersion"
+
+    // App Compat
+    def appcompatVersion = '1.2.0'
+    implementation "androidx.appcompat:appcompat:$appcompatVersion"
+
+    // Constraint Layout
+    def constraintVersion = '1.1.3'
+    implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
+
+    // Navigation
+    def navVersion = '2.3.0'
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
+
+    // Hilt Dependency Injection
+    def hiltAndroidVersion = '2.28.3-alpha'
+    def hiltVersion = '1.0.0-alpha02'
+    implementation "com.google.dagger:hilt-android:$hiltAndroidVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltVersion"
+    implementation "androidx.hilt:hilt-common:$hiltVersion"
+    kapt "androidx.hilt:hilt-compiler:$hiltVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltAndroidVersion"
+
+    // Timber
+    def timberVersion = '4.7.1'
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    // Retrofit
+    def retrofitVersion = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
+
+    // HttpLoggingInterceptor
+    def httpLoggingVersion = '4.8.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:$httpLoggingVersion"
+
+    // Glide
+    def glideVersion = '4.11.0'
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+
+    // JUnit
+    def junit = "4.13"
+    def extjunit = "1.1.1"
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit:$extjunit"
+
+    // Espresso
+    def espresso = "3.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+}
