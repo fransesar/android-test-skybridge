@@ -31,6 +31,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             homeAdapter.setHasStableIds(true)
             adapter = homeAdapter
         }
+        swipe.setOnRefreshListener {
+            swipe.isRefreshing = false
+            viewModel.getLatestMovies()
+        }
         btnRetry.setOnClickListener {
             viewModel.getLatestMovies()
         }
